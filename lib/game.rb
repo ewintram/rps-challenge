@@ -17,9 +17,7 @@ class Game
   end
 
   def print_winner
-    return "Draw!" if winner == :draw
-    return @computer.name + " won!" if winner == @computer
-    return @player.name + " won!" if winner == @player
+    winner.nil? ? "Draw!" : "#{winner.name} won!"
   end
 
   private
@@ -34,9 +32,7 @@ class Game
   end
 
   def winner
-    return :draw if result == :draw
-    return @player if result == @player.choice
-    return @computer if result == @computer.choice
+    result == @player.choice ? @player : @computer unless result == :draw
   end
 
 end

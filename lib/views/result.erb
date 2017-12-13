@@ -3,7 +3,7 @@
   <body>
     <h2><%= @player.name %> chose <%= @player.choice %><h2>
     <h2>Computer chose <%= @computer.choice %><h2>
-    <h2><%= @result %></h2>
+    <h2><%= @game.print_winner %></h2>
 
     <div>
       <form action="/play">

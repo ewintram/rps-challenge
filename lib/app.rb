@@ -13,7 +13,7 @@ class RPS < Sinatra::Base
   post '/names' do
     name = params[:player_name]
     name = "Player" if name == ""
-    @game = Game.create(Player.new(name), Computer.new)
+    Game.create(Player.new(name), Computer.new)
     redirect to('/play')
   end
 
@@ -35,7 +35,6 @@ class RPS < Sinatra::Base
     @player = @game.player
     @computer = @game.computer
     @computer.choose
-    @result = @game.print_winner
     erb(:result)
   end
 
