@@ -1,7 +1,7 @@
 require 'sinatra/base'
-require_relative './computer'
-require_relative './game'
 require_relative './player'
+require_relative './game'
+require_relative './computer'
 
 class RPS < Sinatra::Base
   enable :sessions
@@ -11,7 +11,7 @@ class RPS < Sinatra::Base
   end
 
   post '/names' do
-    name = params[:player_name]
+    name = params[:player1_name]
     name = "Player" if name == ""
     Game.create(Player.new(name), Computer.new)
     redirect to('/play')
@@ -22,19 +22,19 @@ class RPS < Sinatra::Base
   end
 
   get '/play' do
-    @player = @game.player
+    @player = @game.player1
     erb(:play)
   end
 
   post '/choice' do
-    @game.player.choose(params[:player_choice])
+    @game.player1.choose(params[:player1_choice])
     redirect to('/result')
   end
 
   get '/result' do
-    @player = @game.player
-    @computer = @game.computer
-    @computer.choose
+    @player1 = @game.player1
+    @player2 = @game.player2
+    @player2.choose
     erb(:result)
   end
 

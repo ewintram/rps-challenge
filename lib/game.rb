@@ -1,6 +1,6 @@
 class Game
 
-  attr_reader :player, :computer
+  attr_reader :player1, :player2
 
   RULES = {
     :rock => { :paper => :paper, :scissors => :rock, :rock => :draw },
@@ -8,8 +8,8 @@ class Game
     :scissors => { :rock => :rock, :paper => :scissors, :scissors => :draw }
     }
 
-  def self.create(player, computer)
-    @game = Game.new(player, computer)
+  def self.create(player1, player2 = Computer.new)
+    @game = Game.new(player1, player2)
   end
 
   def self.instance
@@ -22,17 +22,17 @@ class Game
 
   private
 
-  def initialize(player, computer)
-    @player = player
-    @computer = computer
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
   end
 
   def result
-    RULES[@player.choice][@computer.choice]
+    RULES[@player1.choice][@player2.choice]
   end
 
   def winner
-    result == @player.choice ? @player : @computer unless result == :draw
+    result == @player1.choice ? @player1 : @player2 unless result == :draw
   end
 
 end
