@@ -10,9 +10,12 @@ class RPS < Sinatra::Base
     erb(:index)
   end
 
+  get '/single_player' do
+    erb(:single_player)
+  end
+
   post '/names' do
     name = params[:player1_name]
-    name = "Player" if name == ""
     Game.create(Player.new(name), Computer.new)
     redirect to('/play')
   end

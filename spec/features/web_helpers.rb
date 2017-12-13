@@ -1,13 +1,7 @@
 def sign_in_and_play
   visit('/')
-
+  click_link "Single Player"
   fill_in :player1_name, with: "Ellie"
-  click_button "Play"
-end
-
-def sign_in_and_play_no_name
-  visit('/')
-
   click_button "Play"
 end
 
